@@ -27,11 +27,15 @@ AWS_SECRET_ACCESS_KEY=os.environ["AWS_SECRET_ACCESS_KEY"]
 AWS_REGION="ap-southeast-1"
 
 def build_chain():
+  AWS_ACCESS_KEY_ID=os.environ["AWS_ACCESS_KEY_ID"]
+  AWS_SECRET_ACCESS_KEY=os.environ["AWS_SECRET_ACCESS_KEY"]
   region = AWS_REGION
   kendra_index_id = os.environ["KENDRA_INDEX_ID"]
+  boto3_bedrock = boto3.client('bedrock-runtime', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY, region_name='us-east-1')
+  boto3_kendra = boto3.client('kendra', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY, region_name=region)
 
   llm = Bedrock(
-      credentials_profile_name='Joey',
+      client=boto3_bedrock,
       region_name = 'us-east-1',
       model_kwargs={
           "max_tokens_to_sample":300,
@@ -42,7 +46,7 @@ def build_chain():
       model_id="anthropic.claude-v2"
   )
       
-  retriever = AmazonKendraRetriever(index_id=kendra_index_id,credentials_profile_name='Joey',top_k=5,region_name=region)
+  retriever = AmazonKendraRetriever(index_id=kendra_index_id,top_k=5,region_name=region,client=boto3_kendra)
 
 
   prompt_template = """
