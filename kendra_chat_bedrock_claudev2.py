@@ -50,18 +50,18 @@ def build_chain():
 
 
   prompt_template = """
-  Human: This is a friendly conversation between a human and an AI. 
-  The AI is talkative and provides specific details from its context but limits it to 240 tokens.
+  Human: 
   If the AI does not know the answer to a question, it truthfully says it 
   does not know.
 
-  Assistant: OK, got it, I'll be a talkative truthful AI assistant.
+  Assistant: OK, got it, I'll be a truthful AI assistant.
 
   Human: Here are a few documents in <documents> tags:
   <documents>
   {context}
   </documents>
-  Based on the above documents, provide a detailed answer for, {question} 
+  There are 6 types classification, namely SECRET, CONFIDENTIAL, CONFIDENTIAL (CLOUD-ELIGIBLE), RESTRICTED, Unclassified Official (Closed), Unclassified Official (Open)
+  Based on the above documents, select a classification suggestion for {question} 
   Answer "don't know" if not present in the document.
   Don't show any documents if there is no document.
 

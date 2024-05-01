@@ -154,7 +154,7 @@ def handle_input():
 
     llm_chain = st.session_state['llm_chain']
     chain = st.session_state['llm_app']
-    result = chain.run_chain(llm_chain, input, chat_history)
+    result = chain.run_chain(llm_chain, "csv file with comma delimiter as the following " + input, chat_history)
     answer = result['answer']
     chat_history.append((input, answer))
     
