@@ -1,0 +1,10 @@
+langchain==0.0.326
+boto3>=1.28.27
+openai
+anthropic
+streamlit
+pypdf2
+openpyxl
+python-docx
+streamlit_extras
+pymupdf
