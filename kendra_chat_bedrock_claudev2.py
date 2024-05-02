@@ -3,7 +3,7 @@ from langchain.retrievers import AmazonKendraRetriever
 from langchain.chains import ConversationalRetrievalChain
 from langchain.prompts import PromptTemplate
 from langchain.llms.bedrock import Bedrock
-from langchain.chains.llm import LLM
+from langchain.chains.llm import LLMChain
 from langchain_openai import ChatOpenAI
 import sys
 import os
