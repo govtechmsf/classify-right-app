@@ -109,7 +109,7 @@ def build_chain():
 
   
   qa = ConversationalRetrievalChain.from_llm(
-        llm=chat, 
+        llm=llm, 
         retriever=retriever, 
         condense_question_prompt=standalone_question_prompt, 
         return_source_documents=True, 
