@@ -4,7 +4,7 @@ from langchain.chains import ConversationalRetrievalChain
 from langchain.prompts import PromptTemplate
 from langchain.llms.bedrock import Bedrock
 from langchain.chains.llm import LLMChain
-from langchain_openai import ChatOpenAI
+# from langchain_openai import ChatOpenAI
 import sys
 import os
 import boto3
@@ -48,19 +48,19 @@ def build_chain():
       model_id="anthropic.claude-v2:1"
   )
 
-  chat = ChatOpenAI(
-    openai_api_base="https://litellm.launchpad.tech.gov.sg",
-    model = "claude-3-haiku",
-    temperature=0.1,
-    extra_body={
-        "metadata": {
-            "generation_name": "ishaan-generation-langchain-client",
-            "generation_id": "langchain-client-gen-id22",
-            "trace_id": "langchain-client-trace-id22",
-            "trace_user_id": "langchain-client-user-id2"
-        }
-    }
-  )
+  # chat = ChatOpenAI(
+  #   openai_api_base="https://litellm.launchpad.tech.gov.sg",
+  #   model = "claude-3-haiku",
+  #   temperature=0.1,
+  #   extra_body={
+  #       "metadata": {
+  #           "generation_name": "ishaan-generation-langchain-client",
+  #           "generation_id": "langchain-client-gen-id22",
+  #           "trace_id": "langchain-client-trace-id22",
+  #           "trace_user_id": "langchain-client-user-id2"
+  #       }
+  #   }
+  # )
       
   retriever = AmazonKendraRetriever(index_id=kendra_index_id,top_k=5,region_name=region,client=boto3_kendra)
 
