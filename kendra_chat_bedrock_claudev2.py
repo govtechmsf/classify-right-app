@@ -46,6 +46,20 @@ def build_chain():
       },
       model_id="anthropic.claude-v2:1"
   )
+
+  chat = ChatOpenAI(
+    openai_api_base="https://litellm.launchpad.tech.gov.sg",
+    model = "claude-3-haiku",
+    temperature=0.1,
+    extra_body={
+        "metadata": {
+            "generation_name": "ishaan-generation-langchain-client",
+            "generation_id": "langchain-client-gen-id22",
+            "trace_id": "langchain-client-trace-id22",
+            "trace_user_id": "langchain-client-user-id2"
+        }
+    }
+  )
       
   retriever = AmazonKendraRetriever(index_id=kendra_index_id,top_k=5,region_name=region,client=boto3_kendra)
 
@@ -94,7 +108,7 @@ def build_chain():
 
   
   qa = ConversationalRetrievalChain.from_llm(
-        llm=llm, 
+        llm=chat, 
         retriever=retriever, 
         condense_question_prompt=standalone_question_prompt, 
         return_source_documents=True, 
