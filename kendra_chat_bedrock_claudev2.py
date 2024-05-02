@@ -41,7 +41,7 @@ def build_chain():
           "max_tokens_to_sample":2000,
           "temperature":1,
           "top_k":250,"top_p":0.999,
-          "anthropic_version":"bedrock-2023-05-31"
+          "anthropic_version":"bedrock-2023-06-01"
       },
       model_id="anthropic.claude-3-sonnet-20240229-v1:0-v2"
   )
