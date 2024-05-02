@@ -85,7 +85,8 @@ def build_chain():
   {context}
   </documents>
   
-  Based on the above documents, select a classification suggestion for {question} 
+  Based on the above documents, depending on the nature of the query below, classify the security and sensitivity level if a dataset is provided (asking follow up queries if needed), or act on the user input if a query or clarification is provided. 
+  {question} 
 
   Assistant:
   """
