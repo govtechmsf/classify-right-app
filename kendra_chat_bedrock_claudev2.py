@@ -52,7 +52,7 @@ def build_chain():
   prompt_template = """
   Human: 
   If the AI does not know the answer to a question, it truthfully says it 
-  does not know.
+  does not know. 
 
   Assistant: OK, got it, I'll be a truthful AI assistant.
 
