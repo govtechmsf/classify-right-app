@@ -38,7 +38,7 @@ def build_chain():
       client=boto3_bedrock,
       region_name = 'us-east-1',
       model_kwargs={
-          "max_tokens_to_sample":2000,
+          "max_tokens_to_sample":1000,
           "temperature":1,
           "top_k":250,"top_p":0.999,
           "anthropic_version":"bedrock-2023-05-31"
