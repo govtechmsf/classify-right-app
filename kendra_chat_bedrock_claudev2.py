@@ -50,9 +50,17 @@ def build_chain():
 
 
   prompt_template = """
-  Human: 
-  If the AI does not know the answer to a question, it truthfully says it 
-  does not know. 
+  Human: Your role is to assign a data security classification to fields. It comes in two parts: the security level which measures impact to government or national interests, and the sensitivity level which measures impact to individual or commercial interests. Combined together, they form a classification level, where "Restricted / Sensitive Normal" means the security level is Restricted and the sensitivity level is Sensitive Normal. The valid classification levels are shown below (in increasing order)
+  Security: Official (Open), Official (Closed), Restricted, Confidential (Cloud Eligible), Confidential, Secret, Top Secret
+  Sensitivity: Non-Sensitive, Sensitive Normal, Sensitive High
+  Furthermore, if the sensitivity level is Sensitive Normal or Sensitive High, the security level can never be Official (Open)
+
+  If the classification level is obvious or can be inferred from your domain knowledge, propose a classification level. Otherwise, prompt the user further to provide information or context which may be useful to propose the classification level, asking the user specific easy to answer questions. Assume that the user has complete information on business context and nature of fields, but no idea what a data security classification is or what information may be relevant. 
+
+  In particular, the following factors may affect the classification level: 
+  1) Account level data may have higher classification than aggregated data
+  2) Deidentified data may have lower classification
+  3) Frequency of data, as well as how real-time the data is, may affect classification level
 
   Assistant: OK, got it, I'll be a truthful AI assistant.
 
@@ -60,10 +68,8 @@ def build_chain():
   <documents>
   {context}
   </documents>
-  There are 6 types classification, namely SECRET, CONFIDENTIAL, CONFIDENTIAL (CLOUD-ELIGIBLE), RESTRICTED, Unclassified Official (Closed), Unclassified Official (Open)
+  
   Based on the above documents, select a classification suggestion for {question} 
-  Answer "don't know" if not present in the document.
-  Don't show any documents if there is no document.
 
   Assistant:
   """
