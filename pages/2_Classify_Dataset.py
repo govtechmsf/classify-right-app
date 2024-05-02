@@ -240,12 +240,11 @@ if uploaded_file is not None:
     st.write("CSV File Content:")
     st.write(df)
 
-    # Classify Dataset button
-    if st.button("Classify Dataset"):
-        csv_content = df.to_csv(index=False, sep=",")
-        st.session_state.input = csv_content
-        st.code(csv_content)
-        handle_input()
+    # Classify Dataset
+    csv_content = df.to_csv(index=False, sep=",")
+    st.session_state.input = csv_content
+    st.code(csv_content)
+    st.button("Classify Dataset", on_click=handle_input)
 
 st.markdown("---")
 with st.expander("Session State"):
