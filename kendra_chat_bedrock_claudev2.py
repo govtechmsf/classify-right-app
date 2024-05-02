@@ -29,6 +29,7 @@ AWS_REGION="ap-southeast-1"
 def build_chain():
   AWS_ACCESS_KEY_ID=os.environ["AWS_ACCESS_KEY_ID"]
   AWS_SECRET_ACCESS_KEY=os.environ["AWS_SECRET_ACCESS_KEY"]
+  GT_API_KEY=os.environ["GT_API_KEY"]
   region = AWS_REGION
   kendra_index_id = os.environ["KENDRA_INDEX_ID"]
   boto3_bedrock = boto3.client('bedrock-runtime', aws_access_key_id=AWS_ACCESS_KEY_ID, aws_secret_access_key=AWS_SECRET_ACCESS_KEY, region_name='us-east-1')
