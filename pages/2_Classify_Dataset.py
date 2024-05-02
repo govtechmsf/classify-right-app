@@ -227,25 +227,28 @@ with st.container():
         write_user_message(q)
         write_chat_message(a, q)
 
-# File upload
-uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
+if st.session_state.user_type == "":
+    st.error("Please proceed to login...")
+else:
+    # File upload
+    uploaded_file = st.file_uploader("Upload CSV file", type=["csv"])
 
-if uploaded_file is not None:
-    st.write("File uploaded successfully!")
+    if uploaded_file is not None:
+        st.write("File uploaded successfully!")
 
-    # Read data from CSV file
-    df = pd.read_csv(uploaded_file)
+        # Read data from CSV file
+        df = pd.read_csv(uploaded_file)
 
-    # Display data in a table
-    st.write("CSV File Content:")
-    st.write(df)
+        # Display data in a table
+        st.write("CSV File Content:")
+        st.write(df)
 
-    # Classify Dataset
-    csv_content = df.to_csv(index=False, sep=",")
-    st.session_state.input = csv_content
-    st.code(csv_content)
-    st.button("Classify Dataset", on_click=handle_input)
+        # Classify Dataset
+        csv_content = df.to_csv(index=False, sep=",")
+        st.session_state.input = csv_content
+        st.code(csv_content)
+        st.button("Classify Dataset", on_click=handle_input)
 
-st.markdown("---")
-with st.expander("Session State"):
-    st.write(st.session_state)
+    st.markdown("---")
+    with st.expander("Session State"):
+        st.write(st.session_state)
